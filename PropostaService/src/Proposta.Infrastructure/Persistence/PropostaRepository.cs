@@ -1,7 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using Proposta.Application.Ports.Out;
-using Proposta.Domain.Entities;
-
 namespace Proposta.Infrastructure.Persistence;
 
 /// <summary>

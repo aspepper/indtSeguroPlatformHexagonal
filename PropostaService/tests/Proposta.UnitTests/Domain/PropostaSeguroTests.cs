@@ -1,8 +1,3 @@
-using Proposta.Domain.Entities;
-using Proposta.Domain.Enums;
-using Proposta.Domain.Exceptions;
-using Xunit;
-
 namespace Proposta.UnitTests.Domain;
 
 public class PropostaSeguroTests

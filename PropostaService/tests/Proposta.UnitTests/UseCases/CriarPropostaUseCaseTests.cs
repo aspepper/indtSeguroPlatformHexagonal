@@ -1,12 +1,3 @@
-using Moq;
-using Proposta.Application.DTOs;
-using Proposta.Application.Ports.Out;
-using Proposta.Application.UseCases;
-using Proposta.Domain.Entities;
-using Proposta.Domain.Enums;
-using Proposta.Domain.Exceptions;
-using Xunit;
-
 namespace Proposta.UnitTests.UseCases;
 
 public class CriarPropostaUseCaseTests

@@ -1,8 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
-using Proposta.Application.DTOs;
-using Proposta.Application.Ports.In;
-using Proposta.Domain.Exceptions;
-
 namespace Proposta.Api.Controllers;
 
 /// <summary>

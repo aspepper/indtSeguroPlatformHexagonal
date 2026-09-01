@@ -1,9 +1,3 @@
-using Contratacao.Application.DTOs;
-using Contratacao.Application.Ports.Out;
-using Contratacao.Application.UseCases;
-using Contratacao.Domain.Exceptions;
-using Moq;
-using Xunit;
 using ContratacaoEntity = Contratacao.Domain.Entities.Contratacao;
 
 namespace Contratacao.UnitTests.UseCases;

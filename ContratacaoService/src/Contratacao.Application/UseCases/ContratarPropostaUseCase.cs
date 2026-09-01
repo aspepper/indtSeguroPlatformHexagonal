@@ -1,7 +1,6 @@
 using Contratacao.Application.DTOs;
 using Contratacao.Application.Ports.In;
 using Contratacao.Application.Ports.Out;
-using Contratacao.Domain.Exceptions;
 using ContratacaoEntity = Contratacao.Domain.Entities.Contratacao;
 
 namespace Contratacao.Application.UseCases;

@@ -1,10 +1,3 @@
-using System.Net;
-using System.Text.Json;
-using Contratacao.Application.DTOs;
-using Contratacao.Application.Ports.Out;
-using Contratacao.Domain.Exceptions;
-using Microsoft.Extensions.Logging;
-
 namespace Contratacao.Infrastructure.ExternalServices;
 
 /// <summary>
