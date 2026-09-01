@@ -70,7 +70,7 @@ graph TD
     C_INFRA_REPO -.->|Implementa| C_POUT_REPO
     C_INFRA_HTTP -.->|Implementa| C_POUT_HTTP
     C_INFRA_REPO --> DB_CONT
-    C_INFRA_HTTP -->|GET /api/propostas/{id}| P_API
+    C_INFRA_HTTP -->|"GET /api/propostas/{id}"| P_API
 ```
 
 ---
