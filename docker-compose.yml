@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  proposta-db:
+    image: postgres:16-alpine
+    container_name: proposta-db
+    environment:
+      POSTGRES_DB: proposta_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - proposta_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d proposta_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - seguro-network
+
+  contratacao-db:
+    image: postgres:16-alpine
+    container_name: contratacao-db
+    environment:
+      POSTGRES_DB: contratacao_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - contratacao_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d contratacao_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - seguro-network
+
+  proposta-api:
+    build:
+      context: .
+      dockerfile: PropostaService/src/Proposta.Api/Dockerfile
+    container_name: proposta-api
+    ports:
+      - "8081:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__PropostaDb=Host=proposta-db;Port=5432;Database=proposta_db;Username=postgres;Password=postgres
+    depends_on:
+      proposta-db:
+        condition: service_healthy
+    networks:
+      - seguro-network
+
+  contratacao-api:
+    build:
+      context: .
+      dockerfile: ContratacaoService/src/Contratacao.Api/Dockerfile
+    container_name: contratacao-api
+    ports:
+      - "8082:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__ContratacaoDb=Host=contratacao-db;Port=5432;Database=contratacao_db;Username=postgres;Password=postgres
+      - PropostaService__BaseUrl=http://proposta-api:8080
+    depends_on:
+      proposta-db:
+        condition: service_healthy
+      contratacao-db:
+        condition: service_healthy
+      proposta-api:
+        condition: service_started
+    networks:
+      - seguro-network
+
+networks:
+  seguro-network:
+    driver: bridge
+
+volumes:
+  proposta_db_data:
+  contratacao_db_data:
