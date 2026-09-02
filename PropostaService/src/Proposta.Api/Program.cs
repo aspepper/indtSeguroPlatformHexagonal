@@ -1,8 +1,10 @@
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
+using MassTransit;
 using Proposta.Application.Ports.In;
 using Proposta.Application.Ports.Out;
 using Proposta.Application.UseCases;
+using Proposta.Infrastructure.Messaging;
 using Proposta.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -31,6 +33,26 @@ builder.Services.AddScoped<ICriarPropostaUseCase, CriarPropostaUseCase>();
 builder.Services.AddScoped<IListarPropostasUseCase, ListarPropostasUseCase>();
 builder.Services.AddScoped<IConsultarPropostaUseCase, ConsultarPropostaUseCase>();
 builder.Services.AddScoped<IAlterarStatusPropostaUseCase, AlterarStatusPropostaUseCase>();
+
+// MassTransit (RabbitMQ)
+builder.Services.AddMassTransit(x =>
+{
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        var host = builder.Configuration["RabbitMq:Host"] ?? builder.Configuration["RabbitMq__Host"] ?? "rabbitmq";
+        var user = builder.Configuration["RabbitMq:Username"] ?? builder.Configuration["RabbitMq__Username"] ?? "rabbitmq";
+        var pass = builder.Configuration["RabbitMq:Password"] ?? builder.Configuration["RabbitMq__Password"] ?? "rabbitmq";
+
+        cfg.Host(host, "/", h =>
+        {
+            h.Username(user);
+            h.Password(pass);
+        });
+    });
+});
+
+// Registrar o adapter que implementa IPropostaEventPublisher
+builder.Services.AddScoped<IPropostaEventPublisher, MassTransitPropostaEventPublisher>();
 
 var app = builder.Build();
 
