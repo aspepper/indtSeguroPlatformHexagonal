@@ -19,6 +19,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Proposta.Domain\Proposta.Domain.csproj" />
     <ProjectReference Include="..\Proposta.Application\Proposta.Application.csproj" />
+    <ProjectReference Include="..\..\..\..\src\Shared\IndtSeguro.Contracts\IndtSeguro.Contracts.csproj" />
   </ItemGroup>
 
 </Project>
