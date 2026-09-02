@@ -1,3 +1,10 @@
+using System.Text.Json.Serialization;
+using Microsoft.EntityFrameworkCore;
+using Proposta.Application.Ports.In;
+using Proposta.Application.Ports.Out;
+using Proposta.Application.UseCases;
+using Proposta.Infrastructure.Persistence;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Controllers & Swagger (configurando JsonStringEnumConverter para serializar enums como string)

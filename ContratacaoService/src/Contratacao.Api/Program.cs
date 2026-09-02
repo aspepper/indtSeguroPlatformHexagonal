@@ -1,3 +1,10 @@
+using Contratacao.Application.Ports.In;
+using Contratacao.Application.Ports.Out;
+using Contratacao.Application.UseCases;
+using Contratacao.Infrastructure.ExternalServices;
+using Contratacao.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Controllers & Swagger

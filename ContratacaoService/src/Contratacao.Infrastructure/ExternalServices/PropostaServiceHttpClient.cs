@@ -1,19 +1,20 @@
+using System.Net;
+using System.Text.Json;
+using Contratacao.Application.DTOs;
+using Contratacao.Application.Ports.Out;
+using Contratacao.Domain.Exceptions;
+using Microsoft.Extensions.Logging;
+
 namespace Contratacao.Infrastructure.ExternalServices;
 
 /// <summary>
 /// Adaptador de Saída (Driven Adapter) que implementa a comunicação HTTP com o PropostaService.
 /// Encapsula as chamadas de rede, serialização/desserialização JSON e tratamento de resiliência e exceções.
 /// </summary>
-public class PropostaServiceHttpClient : IPropostaServiceClient
+public class PropostaServiceHttpClient(HttpClient httpClient, ILogger<PropostaServiceHttpClient> logger) : IPropostaServiceClient
 {
-    private readonly HttpClient _httpClient;
-    private readonly ILogger<PropostaServiceHttpClient> _logger;
-
-    public PropostaServiceHttpClient(HttpClient httpClient, ILogger<PropostaServiceHttpClient> logger)
-    {
-        _httpClient = httpClient;
-        _logger = logger;
-    }
+    private readonly HttpClient _httpClient = httpClient;
+    private readonly ILogger<PropostaServiceHttpClient> _logger = logger;
 
     public async Task<PropostaStatusDto?> ObterStatusPropostaAsync(Guid propostaId, CancellationToken ct = default)
     {

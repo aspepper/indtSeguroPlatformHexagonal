@@ -1,3 +1,8 @@
+using Contratacao.Application.DTOs;
+using Contratacao.Application.Ports.In;
+using Contratacao.Domain.Exceptions;
+using Microsoft.AspNetCore.Mvc;
+
 namespace Contratacao.Api.Controllers;
 
 /// <summary>

@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+
 namespace Contratacao.Infrastructure.Persistence;
 
 /// <summary>

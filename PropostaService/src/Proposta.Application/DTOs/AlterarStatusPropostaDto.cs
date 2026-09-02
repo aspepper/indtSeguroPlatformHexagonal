@@ -1,3 +1,5 @@
+using Proposta.Domain.Enums;
+
 namespace Proposta.Application.DTOs;
 
 /// <summary>

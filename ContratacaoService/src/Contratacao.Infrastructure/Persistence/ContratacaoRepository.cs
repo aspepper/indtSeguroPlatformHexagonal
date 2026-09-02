@@ -1,3 +1,5 @@
+using Contratacao.Application.Ports.Out;
+using Microsoft.EntityFrameworkCore;
 using ContratacaoEntity = Contratacao.Domain.Entities.Contratacao;
 
 namespace Contratacao.Infrastructure.Persistence;

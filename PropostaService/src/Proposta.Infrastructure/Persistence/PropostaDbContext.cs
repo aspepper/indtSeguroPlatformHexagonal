@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Proposta.Domain.Entities;
+
 namespace Proposta.Infrastructure.Persistence;
 
 /// <summary>

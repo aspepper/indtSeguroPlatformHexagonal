@@ -2,6 +2,7 @@ using Proposta.Application.DTOs;
 using Proposta.Application.Mappers;
 using Proposta.Application.Ports.In;
 using Proposta.Application.Ports.Out;
+using Proposta.Domain.Exceptions;
 
 namespace Proposta.Application.UseCases;
 
