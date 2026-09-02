@@ -1,4 +1,4 @@
-using Proposta.Application.IntegrationEvents;
+using IndtSeguro.Contracts.Events;
 
 namespace Proposta.Application.Ports.Out;
 
