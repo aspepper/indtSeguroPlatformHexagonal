@@ -4,6 +4,8 @@ using Contratacao.Application.UseCases;
 using Contratacao.Infrastructure.ExternalServices;
 using Contratacao.Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
+using MassTransit;
+using Contratacao.Infrastructure.Messaging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +34,31 @@ builder.Services.AddHttpClient<IPropostaServiceClient, PropostaServiceHttpClient
 
 // Application Use Cases (Composition Root: Port/In -> Implementação)
 builder.Services.AddScoped<IContratarPropostaUseCase, ContratarPropostaUseCase>();
+
+// MassTransit (RabbitMQ) - registrar consumer e configurar endpoint
+builder.Services.AddMassTransit(x =>
+{
+    x.AddConsumer<PropostaAprovadaConsumer>();
+
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        var host = builder.Configuration["RabbitMq:Host"] ?? builder.Configuration["RabbitMq__Host"] ?? "rabbitmq";
+        var user = builder.Configuration["RabbitMq:Username"] ?? builder.Configuration["RabbitMq__Username"] ?? "rabbitmq";
+        var pass = builder.Configuration["RabbitMq:Password"] ?? builder.Configuration["RabbitMq__Password"] ?? "rabbitmq";
+
+        cfg.Host(host, "/", h =>
+        {
+            h.Username(user);
+            h.Password(pass);
+        });
+
+        cfg.ReceiveEndpoint("contratacao-proposta-aprovada-queue", e =>
+        {
+            e.ConfigureConsumer<PropostaAprovadaConsumer>(context);
+            // retry/dlq policies can be configured here
+        });
+    });
+});
 
 var app = builder.Build();
 
