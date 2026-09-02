@@ -3,6 +3,7 @@ using Contratacao.Application.DTOs;
 using Contratacao.Application.Ports.In;
 using MassTransit;
 using Microsoft.Extensions.Logging;
+using Contratacao.Domain.Exceptions;
 
 namespace Contratacao.Infrastructure.Messaging;
 
