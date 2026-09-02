@@ -35,6 +35,25 @@ services:
     networks:
       - seguro-network
 
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: rabbitmq
+      RABBITMQ_DEFAULT_PASS: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD-SHELL", "rabbitmq-diagnostics -q ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - seguro-network
+
   proposta-api:
     build:
       context: .
@@ -45,8 +64,13 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__PropostaDb=Host=proposta-db;Port=5432;Database=proposta_db;Username=postgres;Password=postgres
+      - RabbitMq__Host=rabbitmq
+      - RabbitMq__Username=rabbitmq
+      - RabbitMq__Password=rabbitmq
     depends_on:
       proposta-db:
+        condition: service_healthy
+      rabbitmq:
         condition: service_healthy
     networks:
       - seguro-network
@@ -62,6 +86,9 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - ConnectionStrings__ContratacaoDb=Host=contratacao-db;Port=5432;Database=contratacao_db;Username=postgres;Password=postgres
       - PropostaService__BaseUrl=http://proposta-api:8080
+      - RabbitMq__Host=rabbitmq
+      - RabbitMq__Username=rabbitmq
+      - RabbitMq__Password=rabbitmq
     depends_on:
       proposta-db:
         condition: service_healthy
@@ -69,6 +96,8 @@ services:
         condition: service_healthy
       proposta-api:
         condition: service_started
+      rabbitmq:
+        condition: service_healthy
     networks:
       - seguro-network
 
@@ -79,3 +108,4 @@ networks:
 volumes:
   proposta_db_data:
   contratacao_db_data:
+  rabbitmq_data:
