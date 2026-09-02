@@ -61,3 +61,5 @@ nunit-*.xml
 # MacOS
 .DS_Store
 .aider*
+*.sh
+*.shz
