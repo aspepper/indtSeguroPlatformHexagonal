@@ -157,7 +157,7 @@ dotnet test
 ```json
 {
   "nomeSegurado": "Alex Pimenta",
-  "cpfSegurado": "12345678901",
+  "cpfSegurado": "56852565076",
   "valorCobertura": 150000.00
 }
 ```
@@ -167,7 +167,7 @@ dotnet test
 {
   "id": "bd621fc7-fe89-4169-b25a-710f5223e769",
   "nomeSegurado": "Alex Pimenta",
-  "cpfSegurado": "12345678901",
+  "cpfSegurado": "56852565076",
   "valorCobertura": 150000.00,
   "status": "EmAnalise",
   "dataCriacao": "2026-09-01T17:53:43.4189242Z",
@@ -193,7 +193,7 @@ dotnet test
 {
   "id": "bd621fc7-fe89-4169-b25a-710f5223e769",
   "nomeSegurado": "Alex Pimenta",
-  "cpfSegurado": "12345678901",
+  "cpfSegurado": "56852565076",
   "valorCobertura": 150000.00,
   "status": "Aprovada",
   "dataCriacao": "2026-09-01T17:53:43.418924Z",
@@ -259,7 +259,7 @@ RESP_CRIAR=$(curl -s -X POST http://localhost:8081/api/propostas \
   -H "Content-Type: application/json" \
   -d '{
     "nomeSegurado": "Alex Pimenta",
-    "cpfSegurado": "12345678901",
+    "cpfSegurado": "56852565076",
     "valorCobertura": 150000.00
   }')
 
