@@ -2,7 +2,6 @@ using Proposta.Application.DTOs;
 using Proposta.Application.Mappers;
 using Proposta.Application.Ports.In;
 using Proposta.Application.Ports.Out;
-using Proposta.Domain.Entities;
 
 namespace Proposta.Application.UseCases;
 
@@ -12,14 +11,9 @@ namespace Proposta.Application.UseCases;
 /// ele instancia a entidade de domínio (que valida suas próprias invariantes),
 /// aciona a porta de saída (IPropostaRepository) para persistência e retorna o DTO de resposta.
 /// </summary>
-public class CriarPropostaUseCase : ICriarPropostaUseCase
+public class CriarPropostaUseCase(IPropostaRepository repository) : ICriarPropostaUseCase
 {
-    private readonly IPropostaRepository _repository;
-
-    public CriarPropostaUseCase(IPropostaRepository repository)
-    {
-        _repository = repository;
-    }
+    private readonly IPropostaRepository _repository = repository;
 
     public async Task<PropostaResponseDto> ExecutarAsync(CriarPropostaDto dto, CancellationToken ct = default)
     {

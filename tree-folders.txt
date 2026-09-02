@@ -1,0 +1,889 @@
+.
+├── ContratacaoService
+│   ├── src
+│   │   ├── Contratacao.Api
+│   │   │   ├── Contratacao.Api.csproj
+│   │   │   ├── Controllers
+│   │   │   │   └── ContratacoesController.cs
+│   │   │   ├── Dockerfile
+│   │   │   ├── Program.cs
+│   │   │   ├── appsettings.Development.json
+│   │   │   ├── appsettings.json
+│   │   │   ├── bin
+│   │   │   │   └── Debug
+│   │   │   │       └── net8.0
+│   │   │   │           ├── Contratacao.Api
+│   │   │   │           ├── Contratacao.Api.deps.json
+│   │   │   │           ├── Contratacao.Api.dll
+│   │   │   │           ├── Contratacao.Api.pdb
+│   │   │   │           ├── Contratacao.Api.runtimeconfig.json
+│   │   │   │           ├── Contratacao.Api.staticwebassets.endpoints.json
+│   │   │   │           ├── Contratacao.Application.dll
+│   │   │   │           ├── Contratacao.Application.pdb
+│   │   │   │           ├── Contratacao.Domain.dll
+│   │   │   │           ├── Contratacao.Domain.pdb
+│   │   │   │           ├── Contratacao.Infrastructure.dll
+│   │   │   │           ├── Contratacao.Infrastructure.pdb
+│   │   │   │           ├── Humanizer.dll
+│   │   │   │           ├── Microsoft.Bcl.AsyncInterfaces.dll
+│   │   │   │           ├── Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+│   │   │   │           ├── Microsoft.CodeAnalysis.CSharp.dll
+│   │   │   │           ├── Microsoft.CodeAnalysis.Workspaces.dll
+│   │   │   │           ├── Microsoft.CodeAnalysis.dll
+│   │   │   │           ├── Microsoft.EntityFrameworkCore.Abstractions.dll
+│   │   │   │           ├── Microsoft.EntityFrameworkCore.Design.dll
+│   │   │   │           ├── Microsoft.EntityFrameworkCore.Relational.dll
+│   │   │   │           ├── Microsoft.EntityFrameworkCore.dll
+│   │   │   │           ├── Microsoft.Extensions.Caching.Memory.dll
+│   │   │   │           ├── Microsoft.Extensions.DependencyInjection.Abstractions.dll
+│   │   │   │           ├── Microsoft.Extensions.DependencyInjection.dll
+│   │   │   │           ├── Microsoft.Extensions.DependencyModel.dll
+│   │   │   │           ├── Microsoft.Extensions.Diagnostics.Abstractions.dll
+│   │   │   │           ├── Microsoft.Extensions.Diagnostics.dll
+│   │   │   │           ├── Microsoft.Extensions.Http.dll
+│   │   │   │           ├── Microsoft.Extensions.Logging.Abstractions.dll
+│   │   │   │           ├── Microsoft.Extensions.Logging.dll
+│   │   │   │           ├── Microsoft.Extensions.Options.dll
+│   │   │   │           ├── Microsoft.OpenApi.dll
+│   │   │   │           ├── Mono.TextTemplating.dll
+│   │   │   │           ├── Npgsql.EntityFrameworkCore.PostgreSQL.dll
+│   │   │   │           ├── Npgsql.dll
+│   │   │   │           ├── Swashbuckle.AspNetCore.Swagger.dll
+│   │   │   │           ├── Swashbuckle.AspNetCore.SwaggerGen.dll
+│   │   │   │           ├── Swashbuckle.AspNetCore.SwaggerUI.dll
+│   │   │   │           ├── System.CodeDom.dll
+│   │   │   │           ├── System.Composition.AttributedModel.dll
+│   │   │   │           ├── System.Composition.Convention.dll
+│   │   │   │           ├── System.Composition.Hosting.dll
+│   │   │   │           ├── System.Composition.Runtime.dll
+│   │   │   │           ├── System.Composition.TypedParts.dll
+│   │   │   │           ├── appsettings.Development.json
+│   │   │   │           ├── appsettings.json
+│   │   │   │           ├── cs
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │           │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   │           ├── de
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │           │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   │           ├── es
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │           │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   │           ├── fr
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │           │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   │           ├── it
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │           │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   │           ├── ja
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │           │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   │           ├── ko
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │           │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   │           ├── pl
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │           │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   │           ├── pt-BR
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │           │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   │           ├── ru
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │           │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   │           ├── tr
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │           │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   │           ├── zh-Hans
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │           │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   │           └── zh-Hant
+│   │   │   │               ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │               ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │               ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │               └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   └── obj
+│   │   │       ├── Contratacao.Api.csproj.nuget.dgspec.json
+│   │   │       ├── Contratacao.Api.csproj.nuget.g.props
+│   │   │       ├── Contratacao.Api.csproj.nuget.g.targets
+│   │   │       ├── Debug
+│   │   │       │   └── net8.0
+│   │   │       │       ├── Contrata.A5D00062.Up2Date
+│   │   │       │       ├── Contratacao.Api.AssemblyInfo.cs
+│   │   │       │       ├── Contratacao.Api.AssemblyInfoInputs.cache
+│   │   │       │       ├── Contratacao.Api.GeneratedMSBuildEditorConfig.editorconfig
+│   │   │       │       ├── Contratacao.Api.GlobalUsings.g.cs
+│   │   │       │       ├── Contratacao.Api.MvcApplicationPartsAssemblyInfo.cache
+│   │   │       │       ├── Contratacao.Api.MvcApplicationPartsAssemblyInfo.cs
+│   │   │       │       ├── Contratacao.Api.assets.cache
+│   │   │       │       ├── Contratacao.Api.csproj.AssemblyReference.cache
+│   │   │       │       ├── Contratacao.Api.csproj.CoreCompileInputs.cache
+│   │   │       │       ├── Contratacao.Api.csproj.FileListAbsolute.txt
+│   │   │       │       ├── Contratacao.Api.dll
+│   │   │       │       ├── Contratacao.Api.genruntimeconfig.cache
+│   │   │       │       ├── Contratacao.Api.pdb
+│   │   │       │       ├── Contratacao.Api.sourcelink.json
+│   │   │       │       ├── apphost
+│   │   │       │       ├── ref
+│   │   │       │       │   └── Contratacao.Api.dll
+│   │   │       │       ├── refint
+│   │   │       │       │   └── Contratacao.Api.dll
+│   │   │       │       ├── staticwebassets
+│   │   │       │       │   ├── msbuild.build.Contratacao.Api.props
+│   │   │       │       │   ├── msbuild.buildMultiTargeting.Contratacao.Api.props
+│   │   │       │       │   └── msbuild.buildTransitive.Contratacao.Api.props
+│   │   │       │       ├── staticwebassets.build.endpoints.json
+│   │   │       │       └── staticwebassets.build.json
+│   │   │       ├── project.assets.json
+│   │   │       └── project.nuget.cache
+│   │   ├── Contratacao.Application
+│   │   │   ├── Contratacao.Application.csproj
+│   │   │   ├── DTOs
+│   │   │   │   ├── ContratacaoResponseDto.cs
+│   │   │   │   ├── ContratarPropostaDto.cs
+│   │   │   │   └── PropostaStatusDto.cs
+│   │   │   ├── Ports
+│   │   │   │   ├── In
+│   │   │   │   │   └── IContratarPropostaUseCase.cs
+│   │   │   │   └── Out
+│   │   │   │       ├── IContratacaoRepository.cs
+│   │   │   │       └── IPropostaServiceClient.cs
+│   │   │   ├── UseCases
+│   │   │   │   └── ContratarPropostaUseCase.cs
+│   │   │   ├── bin
+│   │   │   │   └── Debug
+│   │   │   │       └── net8.0
+│   │   │   │           ├── Contratacao.Application.deps.json
+│   │   │   │           ├── Contratacao.Application.dll
+│   │   │   │           ├── Contratacao.Application.pdb
+│   │   │   │           ├── Contratacao.Domain.dll
+│   │   │   │           └── Contratacao.Domain.pdb
+│   │   │   └── obj
+│   │   │       ├── Contratacao.Application.csproj.nuget.dgspec.json
+│   │   │       ├── Contratacao.Application.csproj.nuget.g.props
+│   │   │       ├── Contratacao.Application.csproj.nuget.g.targets
+│   │   │       ├── Debug
+│   │   │       │   └── net8.0
+│   │   │       │       ├── Contrata.25D2B2BD.Up2Date
+│   │   │       │       ├── Contratacao.Application.AssemblyInfo.cs
+│   │   │       │       ├── Contratacao.Application.AssemblyInfoInputs.cache
+│   │   │       │       ├── Contratacao.Application.GeneratedMSBuildEditorConfig.editorconfig
+│   │   │       │       ├── Contratacao.Application.GlobalUsings.g.cs
+│   │   │       │       ├── Contratacao.Application.assets.cache
+│   │   │       │       ├── Contratacao.Application.csproj.AssemblyReference.cache
+│   │   │       │       ├── Contratacao.Application.csproj.CoreCompileInputs.cache
+│   │   │       │       ├── Contratacao.Application.csproj.FileListAbsolute.txt
+│   │   │       │       ├── Contratacao.Application.dll
+│   │   │       │       ├── Contratacao.Application.pdb
+│   │   │       │       ├── Contratacao.Application.sourcelink.json
+│   │   │       │       ├── ref
+│   │   │       │       │   └── Contratacao.Application.dll
+│   │   │       │       └── refint
+│   │   │       │           └── Contratacao.Application.dll
+│   │   │       ├── project.assets.json
+│   │   │       └── project.nuget.cache
+│   │   ├── Contratacao.Domain
+│   │   │   ├── Contratacao.Domain.csproj
+│   │   │   ├── Entities
+│   │   │   │   └── Contratacao.cs
+│   │   │   ├── Exceptions
+│   │   │   │   └── DomainException.cs
+│   │   │   ├── bin
+│   │   │   │   └── Debug
+│   │   │   │       └── net8.0
+│   │   │   │           ├── Contratacao.Domain.deps.json
+│   │   │   │           ├── Contratacao.Domain.dll
+│   │   │   │           └── Contratacao.Domain.pdb
+│   │   │   └── obj
+│   │   │       ├── Contratacao.Domain.csproj.nuget.dgspec.json
+│   │   │       ├── Contratacao.Domain.csproj.nuget.g.props
+│   │   │       ├── Contratacao.Domain.csproj.nuget.g.targets
+│   │   │       ├── Debug
+│   │   │       │   └── net8.0
+│   │   │       │       ├── Contratacao.Domain.AssemblyInfo.cs
+│   │   │       │       ├── Contratacao.Domain.AssemblyInfoInputs.cache
+│   │   │       │       ├── Contratacao.Domain.GeneratedMSBuildEditorConfig.editorconfig
+│   │   │       │       ├── Contratacao.Domain.GlobalUsings.g.cs
+│   │   │       │       ├── Contratacao.Domain.assets.cache
+│   │   │       │       ├── Contratacao.Domain.csproj.CoreCompileInputs.cache
+│   │   │       │       ├── Contratacao.Domain.csproj.FileListAbsolute.txt
+│   │   │       │       ├── Contratacao.Domain.dll
+│   │   │       │       ├── Contratacao.Domain.pdb
+│   │   │       │       ├── Contratacao.Domain.sourcelink.json
+│   │   │       │       ├── ref
+│   │   │       │       │   └── Contratacao.Domain.dll
+│   │   │       │       └── refint
+│   │   │       │           └── Contratacao.Domain.dll
+│   │   │       ├── project.assets.json
+│   │   │       └── project.nuget.cache
+│   │   └── Contratacao.Infrastructure
+│   │       ├── Contratacao.Infrastructure.csproj
+│   │       ├── ExternalServices
+│   │       │   └── PropostaServiceHttpClient.cs
+│   │       ├── Migrations
+│   │       │   ├── 20260901174540_InitialCreate.Designer.cs
+│   │       │   ├── 20260901174540_InitialCreate.cs
+│   │       │   └── ContratacaoDbContextModelSnapshot.cs
+│   │       ├── Persistence
+│   │       │   ├── ContratacaoDbContext.cs
+│   │       │   ├── ContratacaoDbContextFactory.cs
+│   │       │   └── ContratacaoRepository.cs
+│   │       ├── bin
+│   │       │   └── Debug
+│   │       │       └── net8.0
+│   │       │           ├── Contratacao.Application.dll
+│   │       │           ├── Contratacao.Application.pdb
+│   │       │           ├── Contratacao.Domain.dll
+│   │       │           ├── Contratacao.Domain.pdb
+│   │       │           ├── Contratacao.Infrastructure.deps.json
+│   │       │           ├── Contratacao.Infrastructure.dll
+│   │       │           ├── Contratacao.Infrastructure.pdb
+│   │       │           └── Contratacao.Infrastructure.runtimeconfig.json
+│   │       └── obj
+│   │           ├── Contratacao.Infrastructure.csproj.nuget.dgspec.json
+│   │           ├── Contratacao.Infrastructure.csproj.nuget.g.props
+│   │           ├── Contratacao.Infrastructure.csproj.nuget.g.targets
+│   │           ├── Debug
+│   │           │   └── net8.0
+│   │           │       ├── Contrata.BE884AA5.Up2Date
+│   │           │       ├── Contratacao.Infrastructure.AssemblyInfo.cs
+│   │           │       ├── Contratacao.Infrastructure.AssemblyInfoInputs.cache
+│   │           │       ├── Contratacao.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+│   │           │       ├── Contratacao.Infrastructure.GlobalUsings.g.cs
+│   │           │       ├── Contratacao.Infrastructure.assets.cache
+│   │           │       ├── Contratacao.Infrastructure.csproj.AssemblyReference.cache
+│   │           │       ├── Contratacao.Infrastructure.csproj.CoreCompileInputs.cache
+│   │           │       ├── Contratacao.Infrastructure.csproj.FileListAbsolute.txt
+│   │           │       ├── Contratacao.Infrastructure.dll
+│   │           │       ├── Contratacao.Infrastructure.genruntimeconfig.cache
+│   │           │       ├── Contratacao.Infrastructure.pdb
+│   │           │       ├── Contratacao.Infrastructure.sourcelink.json
+│   │           │       ├── ref
+│   │           │       │   └── Contratacao.Infrastructure.dll
+│   │           │       └── refint
+│   │           │           └── Contratacao.Infrastructure.dll
+│   │           ├── project.assets.json
+│   │           └── project.nuget.cache
+│   └── tests
+│       └── Contratacao.UnitTests
+│           ├── Contratacao.UnitTests.csproj
+│           ├── UseCases
+│           │   └── ContratarPropostaUseCaseTests.cs
+│           ├── bin
+│           │   └── Debug
+│           │       └── net8.0
+│           │           ├── Castle.Core.dll
+│           │           ├── Contratacao.Application.dll
+│           │           ├── Contratacao.Application.pdb
+│           │           ├── Contratacao.Domain.dll
+│           │           ├── Contratacao.Domain.pdb
+│           │           ├── Contratacao.UnitTests.deps.json
+│           │           ├── Contratacao.UnitTests.dll
+│           │           ├── Contratacao.UnitTests.pdb
+│           │           ├── Contratacao.UnitTests.runtimeconfig.json
+│           │           ├── Microsoft.TestPlatform.CommunicationUtilities.dll
+│           │           ├── Microsoft.TestPlatform.CoreUtilities.dll
+│           │           ├── Microsoft.TestPlatform.CrossPlatEngine.dll
+│           │           ├── Microsoft.TestPlatform.PlatformAbstractions.dll
+│           │           ├── Microsoft.TestPlatform.Utilities.dll
+│           │           ├── Microsoft.VisualStudio.CodeCoverage.Shim.dll
+│           │           ├── Microsoft.VisualStudio.TestPlatform.Common.dll
+│           │           ├── Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
+│           │           ├── Moq.dll
+│           │           ├── Newtonsoft.Json.dll
+│           │           ├── System.Diagnostics.EventLog.dll
+│           │           ├── cs
+│           │           │   ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │           │   ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │           │   └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           │           ├── de
+│           │           │   ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │           │   ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │           │   └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           │           ├── es
+│           │           │   ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │           │   ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │           │   └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           │           ├── fr
+│           │           │   ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │           │   ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │           │   └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           │           ├── it
+│           │           │   ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │           │   ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │           │   └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           │           ├── ja
+│           │           │   ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │           │   ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │           │   └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           │           ├── ko
+│           │           │   ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │           │   ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │           │   └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           │           ├── pl
+│           │           │   ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │           │   ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │           │   └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           │           ├── pt-BR
+│           │           │   ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │           │   ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │           │   └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           │           ├── ru
+│           │           │   ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │           │   ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │           │   └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           │           ├── runtimes
+│           │           │   └── win
+│           │           │       └── lib
+│           │           │           └── net6.0
+│           │           │               ├── System.Diagnostics.EventLog.Messages.dll
+│           │           │               └── System.Diagnostics.EventLog.dll
+│           │           ├── testhost.dll
+│           │           ├── tr
+│           │           │   ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │           │   ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │           │   └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           │           ├── xunit.abstractions.dll
+│           │           ├── xunit.assert.dll
+│           │           ├── xunit.core.dll
+│           │           ├── xunit.execution.dotnet.dll
+│           │           ├── xunit.runner.reporters.netcoreapp10.dll
+│           │           ├── xunit.runner.utility.netcoreapp10.dll
+│           │           ├── xunit.runner.visualstudio.testadapter.dll
+│           │           ├── zh-Hans
+│           │           │   ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │           │   ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │           │   └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           │           └── zh-Hant
+│           │               ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │               ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │               ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │               ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │               └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           └── obj
+│               ├── Contratacao.UnitTests.csproj.nuget.dgspec.json
+│               ├── Contratacao.UnitTests.csproj.nuget.g.props
+│               ├── Contratacao.UnitTests.csproj.nuget.g.targets
+│               ├── Debug
+│               │   └── net8.0
+│               │       ├── Contrata.54E5140B.Up2Date
+│               │       ├── Contratacao.UnitTests.AssemblyInfo.cs
+│               │       ├── Contratacao.UnitTests.AssemblyInfoInputs.cache
+│               │       ├── Contratacao.UnitTests.GeneratedMSBuildEditorConfig.editorconfig
+│               │       ├── Contratacao.UnitTests.GlobalUsings.g.cs
+│               │       ├── Contratacao.UnitTests.assets.cache
+│               │       ├── Contratacao.UnitTests.csproj.AssemblyReference.cache
+│               │       ├── Contratacao.UnitTests.csproj.CoreCompileInputs.cache
+│               │       ├── Contratacao.UnitTests.csproj.FileListAbsolute.txt
+│               │       ├── Contratacao.UnitTests.dll
+│               │       ├── Contratacao.UnitTests.genruntimeconfig.cache
+│               │       ├── Contratacao.UnitTests.pdb
+│               │       ├── Contratacao.UnitTests.sourcelink.json
+│               │       ├── ref
+│               │       │   └── Contratacao.UnitTests.dll
+│               │       └── refint
+│               │           └── Contratacao.UnitTests.dll
+│               ├── project.assets.json
+│               └── project.nuget.cache
+├── NuGet.Config
+├── PropostaService
+│   ├── src
+│   │   ├── Proposta.Api
+│   │   │   ├── Controllers
+│   │   │   │   └── PropostasController.cs
+│   │   │   ├── Dockerfile
+│   │   │   ├── Program.cs
+│   │   │   ├── Proposta.Api.csproj
+│   │   │   ├── appsettings.Development.json
+│   │   │   ├── appsettings.json
+│   │   │   ├── bin
+│   │   │   │   └── Debug
+│   │   │   │       └── net8.0
+│   │   │   │           ├── Humanizer.dll
+│   │   │   │           ├── Microsoft.Bcl.AsyncInterfaces.dll
+│   │   │   │           ├── Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+│   │   │   │           ├── Microsoft.CodeAnalysis.CSharp.dll
+│   │   │   │           ├── Microsoft.CodeAnalysis.Workspaces.dll
+│   │   │   │           ├── Microsoft.CodeAnalysis.dll
+│   │   │   │           ├── Microsoft.EntityFrameworkCore.Abstractions.dll
+│   │   │   │           ├── Microsoft.EntityFrameworkCore.Design.dll
+│   │   │   │           ├── Microsoft.EntityFrameworkCore.Relational.dll
+│   │   │   │           ├── Microsoft.EntityFrameworkCore.dll
+│   │   │   │           ├── Microsoft.Extensions.Caching.Memory.dll
+│   │   │   │           ├── Microsoft.Extensions.DependencyInjection.Abstractions.dll
+│   │   │   │           ├── Microsoft.Extensions.DependencyInjection.dll
+│   │   │   │           ├── Microsoft.Extensions.DependencyModel.dll
+│   │   │   │           ├── Microsoft.Extensions.Logging.Abstractions.dll
+│   │   │   │           ├── Microsoft.Extensions.Logging.dll
+│   │   │   │           ├── Microsoft.Extensions.Options.dll
+│   │   │   │           ├── Microsoft.OpenApi.dll
+│   │   │   │           ├── Mono.TextTemplating.dll
+│   │   │   │           ├── Npgsql.EntityFrameworkCore.PostgreSQL.dll
+│   │   │   │           ├── Npgsql.dll
+│   │   │   │           ├── Proposta.Api
+│   │   │   │           ├── Proposta.Api.deps.json
+│   │   │   │           ├── Proposta.Api.dll
+│   │   │   │           ├── Proposta.Api.pdb
+│   │   │   │           ├── Proposta.Api.runtimeconfig.json
+│   │   │   │           ├── Proposta.Api.staticwebassets.endpoints.json
+│   │   │   │           ├── Proposta.Application.dll
+│   │   │   │           ├── Proposta.Application.pdb
+│   │   │   │           ├── Proposta.Domain.dll
+│   │   │   │           ├── Proposta.Domain.pdb
+│   │   │   │           ├── Proposta.Infrastructure.dll
+│   │   │   │           ├── Proposta.Infrastructure.pdb
+│   │   │   │           ├── Swashbuckle.AspNetCore.Swagger.dll
+│   │   │   │           ├── Swashbuckle.AspNetCore.SwaggerGen.dll
+│   │   │   │           ├── Swashbuckle.AspNetCore.SwaggerUI.dll
+│   │   │   │           ├── System.CodeDom.dll
+│   │   │   │           ├── System.Composition.AttributedModel.dll
+│   │   │   │           ├── System.Composition.Convention.dll
+│   │   │   │           ├── System.Composition.Hosting.dll
+│   │   │   │           ├── System.Composition.Runtime.dll
+│   │   │   │           ├── System.Composition.TypedParts.dll
+│   │   │   │           ├── appsettings.Development.json
+│   │   │   │           ├── appsettings.json
+│   │   │   │           ├── cs
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │           │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   │           ├── de
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │           │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   │           ├── es
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │           │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   │           ├── fr
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │           │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   │           ├── it
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │           │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   │           ├── ja
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │           │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   │           ├── ko
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │           │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   │           ├── pl
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │           │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   │           ├── pt-BR
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │           │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   │           ├── ru
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │           │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   │           ├── tr
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │           │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   │           ├── zh-Hans
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │           │   ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │           │   └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   │           └── zh-Hant
+│   │   │   │               ├── Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+│   │   │   │               ├── Microsoft.CodeAnalysis.CSharp.resources.dll
+│   │   │   │               ├── Microsoft.CodeAnalysis.Workspaces.resources.dll
+│   │   │   │               └── Microsoft.CodeAnalysis.resources.dll
+│   │   │   └── obj
+│   │   │       ├── Debug
+│   │   │       │   └── net8.0
+│   │   │       │       ├── Proposta.410E20D1.Up2Date
+│   │   │       │       ├── Proposta.Api.AssemblyInfo.cs
+│   │   │       │       ├── Proposta.Api.AssemblyInfoInputs.cache
+│   │   │       │       ├── Proposta.Api.GeneratedMSBuildEditorConfig.editorconfig
+│   │   │       │       ├── Proposta.Api.GlobalUsings.g.cs
+│   │   │       │       ├── Proposta.Api.MvcApplicationPartsAssemblyInfo.cache
+│   │   │       │       ├── Proposta.Api.MvcApplicationPartsAssemblyInfo.cs
+│   │   │       │       ├── Proposta.Api.assets.cache
+│   │   │       │       ├── Proposta.Api.csproj.AssemblyReference.cache
+│   │   │       │       ├── Proposta.Api.csproj.CoreCompileInputs.cache
+│   │   │       │       ├── Proposta.Api.csproj.FileListAbsolute.txt
+│   │   │       │       ├── Proposta.Api.dll
+│   │   │       │       ├── Proposta.Api.genruntimeconfig.cache
+│   │   │       │       ├── Proposta.Api.pdb
+│   │   │       │       ├── Proposta.Api.sourcelink.json
+│   │   │       │       ├── apphost
+│   │   │       │       ├── ref
+│   │   │       │       │   └── Proposta.Api.dll
+│   │   │       │       ├── refint
+│   │   │       │       │   └── Proposta.Api.dll
+│   │   │       │       ├── staticwebassets
+│   │   │       │       │   ├── msbuild.build.Proposta.Api.props
+│   │   │       │       │   ├── msbuild.buildMultiTargeting.Proposta.Api.props
+│   │   │       │       │   └── msbuild.buildTransitive.Proposta.Api.props
+│   │   │       │       ├── staticwebassets.build.endpoints.json
+│   │   │       │       └── staticwebassets.build.json
+│   │   │       ├── Proposta.Api.csproj.EntityFrameworkCore.targets
+│   │   │       ├── Proposta.Api.csproj.nuget.dgspec.json
+│   │   │       ├── Proposta.Api.csproj.nuget.g.props
+│   │   │       ├── Proposta.Api.csproj.nuget.g.targets
+│   │   │       ├── project.assets.json
+│   │   │       └── project.nuget.cache
+│   │   ├── Proposta.Application
+│   │   │   ├── DTOs
+│   │   │   │   ├── AlterarStatusPropostaDto.cs
+│   │   │   │   ├── CriarPropostaDto.cs
+│   │   │   │   └── PropostaResponseDto.cs
+│   │   │   ├── Mappers
+│   │   │   │   └── PropostaMapper.cs
+│   │   │   ├── Ports
+│   │   │   │   ├── ExplicacaoPorts.cs
+│   │   │   │   ├── In
+│   │   │   │   │   ├── IAlterarStatusPropostaUseCase.cs
+│   │   │   │   │   ├── IConsultarPropostaUseCase.cs
+│   │   │   │   │   ├── ICriarPropostaUseCase.cs
+│   │   │   │   │   └── IListarPropostasUseCase.cs
+│   │   │   │   └── Out
+│   │   │   │       └── IPropostaRepository.cs
+│   │   │   ├── Proposta.Application.csproj
+│   │   │   ├── UseCases
+│   │   │   │   ├── AlterarStatusPropostaUseCase.cs
+│   │   │   │   ├── ConsultarPropostaUseCase.cs
+│   │   │   │   ├── CriarPropostaUseCase.cs
+│   │   │   │   └── ListarPropostasUseCase.cs
+│   │   │   ├── bin
+│   │   │   │   └── Debug
+│   │   │   │       └── net8.0
+│   │   │   │           ├── Proposta.Application.deps.json
+│   │   │   │           ├── Proposta.Application.dll
+│   │   │   │           ├── Proposta.Application.pdb
+│   │   │   │           ├── Proposta.Domain.dll
+│   │   │   │           └── Proposta.Domain.pdb
+│   │   │   └── obj
+│   │   │       ├── Debug
+│   │   │       │   └── net8.0
+│   │   │       │       ├── Proposta.Application.AssemblyInfo.cs
+│   │   │       │       ├── Proposta.Application.AssemblyInfoInputs.cache
+│   │   │       │       ├── Proposta.Application.GeneratedMSBuildEditorConfig.editorconfig
+│   │   │       │       ├── Proposta.Application.GlobalUsings.g.cs
+│   │   │       │       ├── Proposta.Application.assets.cache
+│   │   │       │       ├── Proposta.Application.csproj.AssemblyReference.cache
+│   │   │       │       ├── Proposta.Application.csproj.CoreCompileInputs.cache
+│   │   │       │       ├── Proposta.Application.csproj.FileListAbsolute.txt
+│   │   │       │       ├── Proposta.Application.dll
+│   │   │       │       ├── Proposta.Application.pdb
+│   │   │       │       ├── Proposta.Application.sourcelink.json
+│   │   │       │       ├── Proposta.C1EDAC45.Up2Date
+│   │   │       │       ├── ref
+│   │   │       │       │   └── Proposta.Application.dll
+│   │   │       │       └── refint
+│   │   │       │           └── Proposta.Application.dll
+│   │   │       ├── Proposta.Application.csproj.nuget.dgspec.json
+│   │   │       ├── Proposta.Application.csproj.nuget.g.props
+│   │   │       ├── Proposta.Application.csproj.nuget.g.targets
+│   │   │       ├── project.assets.json
+│   │   │       └── project.nuget.cache
+│   │   ├── Proposta.Domain
+│   │   │   ├── Entities
+│   │   │   │   └── PropostaSeguro.cs
+│   │   │   ├── Enums
+│   │   │   │   └── StatusProposta.cs
+│   │   │   ├── Exceptions
+│   │   │   │   └── DomainException.cs
+│   │   │   ├── Proposta.Domain.csproj
+│   │   │   ├── bin
+│   │   │   │   └── Debug
+│   │   │   │       └── net8.0
+│   │   │   │           ├── Proposta.Domain.deps.json
+│   │   │   │           ├── Proposta.Domain.dll
+│   │   │   │           └── Proposta.Domain.pdb
+│   │   │   └── obj
+│   │   │       ├── Debug
+│   │   │       │   └── net8.0
+│   │   │       │       ├── Proposta.Domain.AssemblyInfo.cs
+│   │   │       │       ├── Proposta.Domain.AssemblyInfoInputs.cache
+│   │   │       │       ├── Proposta.Domain.GeneratedMSBuildEditorConfig.editorconfig
+│   │   │       │       ├── Proposta.Domain.GlobalUsings.g.cs
+│   │   │       │       ├── Proposta.Domain.assets.cache
+│   │   │       │       ├── Proposta.Domain.csproj.CoreCompileInputs.cache
+│   │   │       │       ├── Proposta.Domain.csproj.FileListAbsolute.txt
+│   │   │       │       ├── Proposta.Domain.dll
+│   │   │       │       ├── Proposta.Domain.pdb
+│   │   │       │       ├── Proposta.Domain.sourcelink.json
+│   │   │       │       ├── ref
+│   │   │       │       │   └── Proposta.Domain.dll
+│   │   │       │       └── refint
+│   │   │       │           └── Proposta.Domain.dll
+│   │   │       ├── Proposta.Domain.csproj.nuget.dgspec.json
+│   │   │       ├── Proposta.Domain.csproj.nuget.g.props
+│   │   │       ├── Proposta.Domain.csproj.nuget.g.targets
+│   │   │       ├── project.assets.json
+│   │   │       └── project.nuget.cache
+│   │   └── Proposta.Infrastructure
+│   │       ├── Migrations
+│   │       │   ├── 20260901173951_InitialCreate.Designer.cs
+│   │       │   ├── 20260901173951_InitialCreate.cs
+│   │       │   └── PropostaDbContextModelSnapshot.cs
+│   │       ├── Persistence
+│   │       │   ├── PropostaDbContext.cs
+│   │       │   ├── PropostaDbContextFactory.cs
+│   │       │   └── PropostaRepository.cs
+│   │       ├── Proposta.Infrastructure.csproj
+│   │       ├── bin
+│   │       │   └── Debug
+│   │       │       └── net8.0
+│   │       │           ├── Proposta.Application.dll
+│   │       │           ├── Proposta.Application.pdb
+│   │       │           ├── Proposta.Domain.dll
+│   │       │           ├── Proposta.Domain.pdb
+│   │       │           ├── Proposta.Infrastructure.deps.json
+│   │       │           ├── Proposta.Infrastructure.dll
+│   │       │           ├── Proposta.Infrastructure.pdb
+│   │       │           └── Proposta.Infrastructure.runtimeconfig.json
+│   │       └── obj
+│   │           ├── Debug
+│   │           │   └── net8.0
+│   │           │       ├── Proposta.990168C6.Up2Date
+│   │           │       ├── Proposta.Infrastructure.AssemblyInfo.cs
+│   │           │       ├── Proposta.Infrastructure.AssemblyInfoInputs.cache
+│   │           │       ├── Proposta.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+│   │           │       ├── Proposta.Infrastructure.GlobalUsings.g.cs
+│   │           │       ├── Proposta.Infrastructure.assets.cache
+│   │           │       ├── Proposta.Infrastructure.csproj.AssemblyReference.cache
+│   │           │       ├── Proposta.Infrastructure.csproj.CoreCompileInputs.cache
+│   │           │       ├── Proposta.Infrastructure.csproj.FileListAbsolute.txt
+│   │           │       ├── Proposta.Infrastructure.dll
+│   │           │       ├── Proposta.Infrastructure.genruntimeconfig.cache
+│   │           │       ├── Proposta.Infrastructure.pdb
+│   │           │       ├── Proposta.Infrastructure.sourcelink.json
+│   │           │       ├── ref
+│   │           │       │   └── Proposta.Infrastructure.dll
+│   │           │       └── refint
+│   │           │           └── Proposta.Infrastructure.dll
+│   │           ├── Proposta.Infrastructure.csproj.EntityFrameworkCore.targets
+│   │           ├── Proposta.Infrastructure.csproj.nuget.dgspec.json
+│   │           ├── Proposta.Infrastructure.csproj.nuget.g.props
+│   │           ├── Proposta.Infrastructure.csproj.nuget.g.targets
+│   │           ├── project.assets.json
+│   │           └── project.nuget.cache
+│   └── tests
+│       └── Proposta.UnitTests
+│           ├── Domain
+│           │   └── PropostaSeguroTests.cs
+│           ├── Proposta.UnitTests.csproj
+│           ├── UseCases
+│           │   ├── AlterarStatusPropostaUseCaseTests.cs
+│           │   └── CriarPropostaUseCaseTests.cs
+│           ├── bin
+│           │   └── Debug
+│           │       └── net8.0
+│           │           ├── Castle.Core.dll
+│           │           ├── Microsoft.TestPlatform.CommunicationUtilities.dll
+│           │           ├── Microsoft.TestPlatform.CoreUtilities.dll
+│           │           ├── Microsoft.TestPlatform.CrossPlatEngine.dll
+│           │           ├── Microsoft.TestPlatform.PlatformAbstractions.dll
+│           │           ├── Microsoft.TestPlatform.Utilities.dll
+│           │           ├── Microsoft.VisualStudio.CodeCoverage.Shim.dll
+│           │           ├── Microsoft.VisualStudio.TestPlatform.Common.dll
+│           │           ├── Microsoft.VisualStudio.TestPlatform.ObjectModel.dll
+│           │           ├── Moq.dll
+│           │           ├── Newtonsoft.Json.dll
+│           │           ├── Proposta.Application.dll
+│           │           ├── Proposta.Application.pdb
+│           │           ├── Proposta.Domain.dll
+│           │           ├── Proposta.Domain.pdb
+│           │           ├── Proposta.UnitTests.deps.json
+│           │           ├── Proposta.UnitTests.dll
+│           │           ├── Proposta.UnitTests.pdb
+│           │           ├── Proposta.UnitTests.runtimeconfig.json
+│           │           ├── System.Diagnostics.EventLog.dll
+│           │           ├── cs
+│           │           │   ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │           │   ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │           │   └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           │           ├── de
+│           │           │   ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │           │   ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │           │   └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           │           ├── es
+│           │           │   ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │           │   ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │           │   └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           │           ├── fr
+│           │           │   ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │           │   ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │           │   └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           │           ├── it
+│           │           │   ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │           │   ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │           │   └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           │           ├── ja
+│           │           │   ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │           │   ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │           │   └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           │           ├── ko
+│           │           │   ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │           │   ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │           │   └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           │           ├── pl
+│           │           │   ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │           │   ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │           │   └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           │           ├── pt-BR
+│           │           │   ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │           │   ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │           │   └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           │           ├── ru
+│           │           │   ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │           │   ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │           │   └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           │           ├── runtimes
+│           │           │   └── win
+│           │           │       └── lib
+│           │           │           └── net6.0
+│           │           │               ├── System.Diagnostics.EventLog.Messages.dll
+│           │           │               └── System.Diagnostics.EventLog.dll
+│           │           ├── testhost.dll
+│           │           ├── tr
+│           │           │   ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │           │   ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │           │   └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           │           ├── xunit.abstractions.dll
+│           │           ├── xunit.assert.dll
+│           │           ├── xunit.core.dll
+│           │           ├── xunit.execution.dotnet.dll
+│           │           ├── xunit.runner.reporters.netcoreapp10.dll
+│           │           ├── xunit.runner.utility.netcoreapp10.dll
+│           │           ├── xunit.runner.visualstudio.testadapter.dll
+│           │           ├── zh-Hans
+│           │           │   ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │           │   ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │           │   ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │           │   └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           │           └── zh-Hant
+│           │               ├── Microsoft.TestPlatform.CommunicationUtilities.resources.dll
+│           │               ├── Microsoft.TestPlatform.CoreUtilities.resources.dll
+│           │               ├── Microsoft.TestPlatform.CrossPlatEngine.resources.dll
+│           │               ├── Microsoft.VisualStudio.TestPlatform.Common.resources.dll
+│           │               └── Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+│           └── obj
+│               ├── Debug
+│               │   └── net8.0
+│               │       ├── Proposta.23D82C00.Up2Date
+│               │       ├── Proposta.UnitTests.AssemblyInfo.cs
+│               │       ├── Proposta.UnitTests.AssemblyInfoInputs.cache
+│               │       ├── Proposta.UnitTests.GeneratedMSBuildEditorConfig.editorconfig
+│               │       ├── Proposta.UnitTests.GlobalUsings.g.cs
+│               │       ├── Proposta.UnitTests.assets.cache
+│               │       ├── Proposta.UnitTests.csproj.AssemblyReference.cache
+│               │       ├── Proposta.UnitTests.csproj.CoreCompileInputs.cache
+│               │       ├── Proposta.UnitTests.csproj.FileListAbsolute.txt
+│               │       ├── Proposta.UnitTests.dll
+│               │       ├── Proposta.UnitTests.genruntimeconfig.cache
+│               │       ├── Proposta.UnitTests.pdb
+│               │       ├── Proposta.UnitTests.sourcelink.json
+│               │       ├── ref
+│               │       │   └── Proposta.UnitTests.dll
+│               │       └── refint
+│               │           └── Proposta.UnitTests.dll
+│               ├── Proposta.UnitTests.csproj.nuget.dgspec.json
+│               ├── Proposta.UnitTests.csproj.nuget.g.props
+│               ├── Proposta.UnitTests.csproj.nuget.g.targets
+│               ├── project.assets.json
+│               └── project.nuget.cache
+├── README.md
+├── SeguroPlatform.sln
+├── docker-compose.yml
+├── documents
+│   ├── 01-create-implementation
+│   │   ├── Teste Técnico INDT - Arquitetura Hexagonal .pdf
+│   │   └── plano-tecnico-teste-indt.md
+│   └── 02-codereview
+│       ├── Relatorio-CodeReview-indtSeguroPlatformHexagonal.md
+│       └── instrucoes-codereview.md
+└── tree-folders.txt
+
+188 directories, 699 files

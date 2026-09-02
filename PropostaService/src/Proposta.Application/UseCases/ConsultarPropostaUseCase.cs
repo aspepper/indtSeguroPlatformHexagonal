@@ -8,14 +8,9 @@ namespace Proposta.Application.UseCases;
 /// <summary>
 /// Caso de uso para consulta de uma proposta de seguro por seu identificador único.
 /// </summary>
-public class ConsultarPropostaUseCase : IConsultarPropostaUseCase
+public class ConsultarPropostaUseCase(IPropostaRepository repository) : IConsultarPropostaUseCase
 {
-    private readonly IPropostaRepository _repository;
-
-    public ConsultarPropostaUseCase(IPropostaRepository repository)
-    {
-        _repository = repository;
-    }
+    private readonly IPropostaRepository _repository = repository;
 
     public async Task<PropostaResponseDto?> ExecutarAsync(Guid id, CancellationToken ct = default)
     {

@@ -5,9 +5,6 @@ namespace Proposta.Domain.Exceptions;
 /// Na Arquitetura Hexagonal com DDD, as regras residem no núcleo do domínio e as exceções
 /// são capturadas pelo adaptador de entrada (Controllers) para serem traduzidas em status HTTP (ex: 400 Bad Request).
 /// </summary>
-public class DomainException : Exception
+public class DomainException(string mensagem) : Exception(mensagem), Exception
 {
-    public DomainException(string mensagem) : base(mensagem)
-    {
-    }
 }

@@ -5,14 +5,9 @@ namespace Contratacao.Infrastructure.Persistence;
 /// <summary>
 /// Adaptador de Saída (Driven Adapter) para persistência de contratações via EF Core.
 /// </summary>
-public class ContratacaoRepository : IContratacaoRepository
+public class ContratacaoRepository(ContratacaoDbContext context) : IContratacaoRepository
 {
-    private readonly ContratacaoDbContext _context;
-
-    public ContratacaoRepository(ContratacaoDbContext context)
-    {
-        _context = context;
-    }
+    private readonly ContratacaoDbContext _context = context;
 
     public async Task<ContratacaoEntity?> ObterPorPropostaIdAsync(Guid propostaId, CancellationToken ct = default)
     {

@@ -8,14 +8,9 @@ namespace Proposta.Application.UseCases;
 /// <summary>
 /// Caso de uso para listagem de todas as propostas de seguro.
 /// </summary>
-public class ListarPropostasUseCase : IListarPropostasUseCase
+public class ListarPropostasUseCase(IPropostaRepository repository) : IListarPropostasUseCase
 {
-    private readonly IPropostaRepository _repository;
-
-    public ListarPropostasUseCase(IPropostaRepository repository)
-    {
-        _repository = repository;
-    }
+    private readonly IPropostaRepository _repository = repository;
 
     public async Task<IEnumerable<PropostaResponseDto>> ExecutarAsync(CancellationToken ct = default)
     {

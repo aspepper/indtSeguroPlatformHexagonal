@@ -5,12 +5,8 @@ namespace Contratacao.Infrastructure.Persistence;
 /// <summary>
 /// DbContext do EF Core para o microsserviço de Contratações.
 /// </summary>
-public class ContratacaoDbContext : DbContext
+public class ContratacaoDbContext(DbContextOptions<ContratacaoDbContext> options) : DbContext(options), DbContext
 {
-    public ContratacaoDbContext(DbContextOptions<ContratacaoDbContext> options) : base(options)
-    {
-    }
-
     public DbSet<ContratacaoEntity> Contratacoes => Set<ContratacaoEntity>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
