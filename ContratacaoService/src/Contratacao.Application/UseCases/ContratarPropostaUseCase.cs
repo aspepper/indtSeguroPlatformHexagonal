@@ -45,13 +45,8 @@ public class ContratarPropostaUseCase : IContratarPropostaUseCase
         ArgumentNullException.ThrowIfNull(dto);
 
         // 1. Busca o status da proposta via IPropostaServiceClient (Port/Out)
-        var proposta = await _propostaServiceClient.ObterStatusPropostaAsync(dto.PropostaId, ct);
-
         // 2. Se a proposta não existir, lança DomainException
-        if (proposta == null)
-        {
-            throw new DomainException("Proposta não encontrada.");
-        }
+        var proposta = await _propostaServiceClient.ObterStatusPropostaAsync(dto.PropostaId, ct) ?? throw new DomainException("Proposta não encontrada.");
 
         // 3. Valida se o status da proposta é "Aprovada"
         if (!string.Equals(proposta.Status, "Aprovada", StringComparison.OrdinalIgnoreCase))

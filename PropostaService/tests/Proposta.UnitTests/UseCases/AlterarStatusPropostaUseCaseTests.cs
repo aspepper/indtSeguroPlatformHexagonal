@@ -42,7 +42,7 @@ public class AlterarStatusPropostaUseCaseTests
     public async Task Deve_Chamar_AtualizarAsync_Quando_Transicao_De_Status_For_Valida()
     {
         // Arrange
-        var proposta = new PropostaSeguro("Lucas Mendes", "11122233344", 30000m);
+        var proposta = new PropostaSeguro("Oscar Pimenta", "07863839092", 30000m);
         var dto = new AlterarStatusPropostaDto(StatusProposta.Aprovada);
 
         _repositoryMock

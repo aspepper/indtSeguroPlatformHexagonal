@@ -11,8 +11,8 @@ public class PropostaSeguroTests
     public void Deve_Criar_Proposta_Valida_Com_Status_EmAnalise()
     {
         // Arrange
-        var nome = "João da Silva";
-        var cpf = "12345678901";
+        var nome = "Estela Pimenta";
+        var cpf = "06291540070";
         var valor = 50000m;
 
         // Act
@@ -35,7 +35,7 @@ public class PropostaSeguroTests
     public void Deve_Lancar_DomainException_Quando_NomeSegurado_For_Vazio(string? nomeInvalido)
     {
         // Act & Assert
-        var ex = Assert.Throws<DomainException>(() => new PropostaSeguro(nomeInvalido!, "12345678901", 1000m));
+        var ex = Assert.Throws<DomainException>(() => new PropostaSeguro(nomeInvalido!, "14168770028", 1000m));
         Assert.Contains("nome do segurado é obrigatório", ex.Message, StringComparison.OrdinalIgnoreCase);
     }
 
@@ -56,7 +56,7 @@ public class PropostaSeguroTests
     public void Deve_Lancar_DomainException_Quando_ValorCobertura_For_Menor_Ou_Igual_A_Zero(decimal valorInvalido)
     {
         // Act & Assert
-        var ex = Assert.Throws<DomainException>(() => new PropostaSeguro("Maria Oliveira", "12345678901", valorInvalido));
+        var ex = Assert.Throws<DomainException>(() => new PropostaSeguro("Maria Oliveira", "14168770028", valorInvalido));
         Assert.Contains("maior que zero", ex.Message, StringComparison.OrdinalIgnoreCase);
     }
 
@@ -64,7 +64,7 @@ public class PropostaSeguroTests
     public void Deve_Permitir_Transicao_De_EmAnalise_Para_Aprovada()
     {
         // Arrange
-        var proposta = new PropostaSeguro("Carlos Santos", "12345678901", 20000m);
+        var proposta = new PropostaSeguro("Arthur Pimenta", "89982292005", 20000m);
 
         // Act
         proposta.AlterarStatus(StatusProposta.Aprovada);
@@ -79,7 +79,7 @@ public class PropostaSeguroTests
     public void Deve_Permitir_Transicao_De_EmAnalise_Para_Rejeitada()
     {
         // Arrange
-        var proposta = new PropostaSeguro("Carlos Santos", "12345678901", 20000m);
+        var proposta = new PropostaSeguro("Carlos Santos", "89982292005", 20000m);
 
         // Act
         proposta.AlterarStatus(StatusProposta.Rejeitada);
@@ -94,7 +94,7 @@ public class PropostaSeguroTests
     public void Deve_Lancar_DomainException_Ao_Tentar_Voltar_De_Aprovada_Para_EmAnalise()
     {
         // Arrange
-        var proposta = new PropostaSeguro("Carlos Santos", "12345678901", 20000m);
+        var proposta = new PropostaSeguro("Arthur Pimenta", "89982292005", 20000m);
         proposta.AlterarStatus(StatusProposta.Aprovada);
 
         // Act & Assert
@@ -106,7 +106,7 @@ public class PropostaSeguroTests
     public void Deve_Lancar_DomainException_Ao_Tentar_Alterar_Status_De_Proposta_Rejeitada()
     {
         // Arrange
-        var proposta = new PropostaSeguro("Carlos Santos", "12345678901", 20000m);
+        var proposta = new PropostaSeguro("Arthur Pimenta", "89982292005", 20000m);
         proposta.AlterarStatus(StatusProposta.Rejeitada);
 
         // Act & Assert
@@ -118,7 +118,7 @@ public class PropostaSeguroTests
     public void Deve_Lancar_DomainException_Ao_Tentar_Setar_Mesmo_Status_Atual()
     {
         // Arrange
-        var proposta = new PropostaSeguro("Carlos Santos", "12345678901", 20000m);
+        var proposta = new PropostaSeguro("Arthur Pimenta", "89982292005", 20000m);
 
         // Act & Assert
         var ex = Assert.Throws<DomainException>(() => proposta.AlterarStatus(StatusProposta.EmAnalise));

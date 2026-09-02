@@ -46,6 +46,11 @@ public class PropostaSeguro
             throw new DomainException("O CPF do segurado deve conter exatamente 11 dígitos numéricos.");
         }
 
+        if (!CpfEhValido(cpfNumerico))
+        {
+            throw new DomainException("O CPF do segurado é inválido.");
+        }
+
         if (valorCobertura <= 0)
         {
             throw new DomainException("O valor da cobertura deve ser maior que zero.");
@@ -93,5 +98,55 @@ public class PropostaSeguro
     public bool EstaAprovada()
     {
         return Status == StatusProposta.Aprovada;
+    }
+
+    /// <summary>
+    /// Valida um CPF calculando seus dois dígitos verificadores conforme o algoritmo oficial da Receita Federal.
+    /// </summary>
+    /// <param name="cpf">CPF contendo exatamente 11 dígitos numéricos (sem máscara).</param>
+    /// <returns>True se os dígitos verificadores calculados conferem com os informados, caso contrário False.</returns>
+    private static bool CpfEhValido(string cpf)
+    {
+        // CPFs com todos os dígitos iguais (ex: "111.111.111-11") passam pelo cálculo
+        // mas são conhecidamente inválidos, então são rejeitados explicitamente.
+        if (cpf.Distinct().Count() == 1)
+        {
+            return false;
+        }
+
+        var primeiroDigitoCalculado = CalcularDigitoVerificador(cpf.Substring(0, 9));
+        if (primeiroDigitoCalculado != cpf[9] - '0')
+        {
+            return false;
+        }
+
+        var segundoDigitoCalculado = CalcularDigitoVerificador(cpf.Substring(0, 10));
+        if (segundoDigitoCalculado != cpf[10] - '0')
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// Calcula um dígito verificador de CPF a partir dos dígitos base informados,
+    /// usando pesos decrescentes (a partir de base.Length + 1) e módulo 11.
+    /// </summary>
+    /// <param name="baseDigitos">Dígitos numéricos usados como base para o cálculo (9 para o 1º DV, 10 para o 2º DV).</param>
+    /// <returns>O dígito verificador calculado (0 a 9).</returns>
+    private static int CalcularDigitoVerificador(string baseDigitos)
+    {
+        int peso = baseDigitos.Length + 1;
+        int soma = 0;
+
+        foreach (var caractere in baseDigitos)
+        {
+            soma += (caractere - '0') * peso;
+            peso--;
+        }
+
+        int resto = soma % 11;
+        return resto < 2 ? 0 : 11 - resto;
     }
 }

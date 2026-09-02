@@ -43,7 +43,7 @@ public class CriarPropostaUseCaseTests
     public async Task Deve_Propagar_DomainException_Quando_Dados_Forem_Invalidos_Sem_Chamar_AdicionarAsync()
     {
         // Arrange (nome vazio para forçar exceção de domínio)
-        var dto = new CriarPropostaDto("", "98765432100", 75000m);
+        var dto = new CriarPropostaDto("", "09312482050", 75000m);
 
         // Act & Assert
         await Assert.ThrowsAsync<DomainException>(() => _useCase.ExecutarAsync(dto));
