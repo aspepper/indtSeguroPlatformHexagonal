@@ -82,15 +82,7 @@ docker-compose ps
 Execute o teste de criação de proposta:
 
 ```bash
-curl -X 'POST' \\
-  'http://localhost:8081/api/propostas' \\
-  -H 'accept: application/json' \\
-  -H 'Content-Type: application/json' \\
-  -d '{
-  "cpfSegurado": "33579040049",
-  "valorCobertura": 150000.00
-}'
-
+curl -X 'POST' 'http://localhost:8081/api/propostas' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"nomeSegurado": "João da Silva", "cpfSegurado": "33579040049", "valorCobertura": 150000.00}'
 ```
 
 *Resposta esperada (HTTP 201 Created):*
@@ -98,10 +90,12 @@ curl -X 'POST' \\
 ```json
 {
   "id": "e3a890bd-3f32-4e02-9912-32b71946320a",
+  "nomeSegurado": "string",,
   "cpfSegurado": "33579040049",
   "valorCobertura": 150000.00,
   "status": "EmAnalise",
-  "criadoEm": "2026-09-02T19:00:00Z"
+  "dataCriacao": "2026-09-02T20:08:43.496Z",
+  "dataAtualizacao": "2026-09-02T20:08:43.496Z"
 }
 
 ```
@@ -113,13 +107,7 @@ curl -X 'POST' \\
 Tente enviar um valor de cobertura zerado ou negativo para garantir tratamento correto de exceção de domínio:
 
 ```bash
-curl -X 'POST' \\
-  'http://localhost:8081/api/propostas' \\
-  -H 'Content-Type: application/json' \\
-  -d '{
-  "cpfSegurado": "33579040049",
-  "valorCobertura": 0
-}'
+curl -X 'POST' 'http://localhost:8081/api/propostas' -H 'Content-Type: application/json' -d '{"nomeSegurado": "João da Silva", "cpfSegurado": "33579040049", "valorCobertura": 0}'
 
 ```
 
@@ -150,7 +138,7 @@ Retorna uma lista JSON contendo todas as propostas cadastradas no banco `propost
 
 #### Passo 2.2: Consultar Proposta Específica por ID
 
-Substitua `{ID_DA_PROPOSTA}` pelo GUID obtido no Passo 1.1:
+Substitua `{ID_DA_PROPOSTA}` pelo GUID obtido no Passo 1.1. O corpo deve ser um objeto JSON, e não o GUID diretamente:
 
 ```bash
 curl -X 'GET' 'http://localhost:8081/api/propostas/{ID_DA_PROPOSTA}' -H 'accept: application/json'
@@ -167,12 +155,7 @@ Detalhes da proposta em status `"EmAnalise"`.
 Antes de aprovar a proposta, tente contratar diretamente via `ContratacaoService` para testar a validação de regra de negócio:
 
 ```bash
-curl -X 'POST' \\
-  'http://localhost:8082/api/contratacoes' \\
-  -H 'Content-Type: application/json' \\
-  -d '{
-  "propostaId": "{ID_DA_PROPOSTA}"
-}'
+curl -X 'POST' 'http://localhost:8082/api/contratacoes' -H 'Content-Type: application/json' -d '{"propostaId":"COLE_AQUI_UM_GUID_REAL"}'
 
 ```
 
@@ -205,12 +188,7 @@ docker-compose logs -f contratacao-api proposta-api
 Altere o status da proposta para `2` (`Aprovada`):
 
 ```bash
-curl -X 'PATCH' \\
-  'http://localhost:8081/api/propostas/{ID_DA_PROPOSTA}/status' \\
-  -H 'Content-Type: application/json' \\
-  -d '{
-  "novoStatus": 2
-}'
+curl -X 'PATCH' 'http://localhost:8081/api/propostas/{ID_DA_PROPOSTA}/status' -H 'Content-Type: application/json' -d '{"novoStatus": 2 }'
 
 ```
 
@@ -258,12 +236,7 @@ Observe o terminal onde os logs estão sendo monitorados. Você deverá visualiz
 Como o consumidor assíncrono já efetivou a contratação ao receber o evento do RabbitMQ, qualquer tentativa subsequente de contratar a mesma proposta deve ser barrada pelo repositório:
 
 ```bash
-curl -X 'POST' \\
-  'http://localhost:8082/api/contratacoes' \\
-  -H 'Content-Type: application/json' \\
-  -d '{
-  "propostaId": "{ID_DA_PROPOSTA}"
-}'
+curl -X 'POST' 'http://localhost:8082/api/contratacoes' -H 'Content-Type: application/json' -d '{"propostaId":"COLE_AQUI_UM_GUID_REAL"}'
 
 ```
 
