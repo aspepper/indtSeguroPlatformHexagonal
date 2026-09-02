@@ -12,10 +12,17 @@ public class AlterarStatusPropostaUseCase : IAlterarStatusPropostaUseCase
     private readonly IPropostaRepository _repository;
     private readonly IPropostaEventPublisher _publisher;
 
+    // Primary ctor used in production (inject publisher)
     public AlterarStatusPropostaUseCase(IPropostaRepository repository, IPropostaEventPublisher publisher)
     {
         _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         _publisher = publisher ?? throw new ArgumentNullException(nameof(publisher));
+    }
+
+    // Backwards-compatible ctor used by older tests that only provide repository
+    public AlterarStatusPropostaUseCase(IPropostaRepository repository)
+        : this(repository, new NoopPropostaEventPublisher())
+    {
     }
 
     public async Task<PropostaResponseDto> ExecutarAsync(Guid id, AlterarStatusPropostaDto dto, CancellationToken ct = default)
@@ -43,5 +50,14 @@ public class AlterarStatusPropostaUseCase : IAlterarStatusPropostaUseCase
         }
 
         return proposta.ParaDto();
+    }
+
+    // Simple no-op publisher to preserve backward compatibility with tests that don't provide a publisher.
+    private class NoopPropostaEventPublisher : IPropostaEventPublisher
+    {
+        public Task PublicarAsync<TEvento>(TEvento evento, CancellationToken ct = default) where TEvento : class
+        {
+            return Task.CompletedTask;
+        }
     }
 }
