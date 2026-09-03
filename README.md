@@ -29,11 +29,13 @@ graph TD
 
     subgraph PropostaService ["PropostaService (Porta 8081)"]
         P_API["Proposta.Api (Controller)"]
-        P_PIN["Ports/In (ICriarProposta, IAlterarStatus)"]
+        P_PIN["Ports/In (ICriarProposta, IAlterarStatus, IConsultar, IListar)"]
         P_UC["UseCases (Orquestração Pura)"]
         P_DOM["Proposta.Domain (PropostaSeguro Aggregate)"]
-        P_POUT["Ports/Out (IPropostaRepository)"]
-        P_INFRA["Proposta.Infrastructure (EF Core Adapter)"]
+        P_POUT_REPO["Ports/Out (IPropostaRepository)"]
+        P_POUT_EVT["Ports/Out (IPropostaEventPublisher)"]
+        P_INFRA_REPO["Proposta.Infrastructure (EF Core Adapter)"]
+        P_INFRA_EVT["MassTransitPropostaEventPublisher (RabbitMQ Adapter)"]
     end
 
     subgraph ContratacaoService ["ContratacaoService (Porta 8082)"]
@@ -45,6 +47,15 @@ graph TD
         C_POUT_HTTP["Ports/Out (IPropostaServiceClient)"]
         C_INFRA_REPO["Contratacao.Infrastructure (EF Core Adapter)"]
         C_INFRA_HTTP["PropostaServiceHttpClient (HttpClient Typed Adapter)"]
+        C_INFRA_CONSUMER["PropostaAprovadaConsumer (MassTransit Consumer)"]
+    end
+
+    subgraph Shared ["IndtSeguro.Contracts (Shared Kernel)"]
+        EVENTS["PropostaCriadaEvent / PropostaAprovadaEvent / PropostaRejeitadaEvent"]
+    end
+
+    subgraph Broker ["Mensageria"]
+        MQ{{"RabbitMQ"}}
     end
 
     subgraph Databases ["Bancos de Dados Relacionais"]
@@ -52,15 +63,19 @@ graph TD
         DB_CONT[("contratacao_db (PostgreSQL)")]
     end
 
-    HTTP_REQ -->|POST/GET/PATCH| P_API
-    HTTP_REQ -->|POST /api/contratacoes| C_API
+    HTTP_REQ -->|"POST/GET/PATCH /api/propostas"| P_API
+    HTTP_REQ -->|"POST /api/contratacoes"| C_API
 
     P_API --> P_PIN
     P_PIN --> P_UC
     P_UC --> P_DOM
-    P_UC --> P_POUT
-    P_INFRA -.->|Implementa| P_POUT
-    P_INFRA --> DB_PROP
+    P_UC --> P_POUT_REPO
+    P_UC -->|"Aprovada / Rejeitada"| P_POUT_EVT
+    P_INFRA_REPO -.->|Implementa| P_POUT_REPO
+    P_INFRA_EVT -.->|Implementa| P_POUT_EVT
+    P_INFRA_REPO --> DB_PROP
+    P_INFRA_EVT -->|Publish| MQ
+    P_POUT_EVT -.->|usa contratos| EVENTS
 
     C_API --> C_PIN
     C_PIN --> C_UC
@@ -71,6 +86,10 @@ graph TD
     C_INFRA_HTTP -.->|Implementa| C_POUT_HTTP
     C_INFRA_REPO --> DB_CONT
     C_INFRA_HTTP -->|"GET /api/propostas/{id}"| P_API
+
+    MQ -->|"Consome PropostaAprovadaEvent"| C_INFRA_CONSUMER
+    C_INFRA_CONSUMER -->|"Aciona automaticamente"| C_PIN
+    C_INFRA_CONSUMER -.->|"usa contratos"| EVENTS
 ```
 
 ---
