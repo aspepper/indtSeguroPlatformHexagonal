@@ -200,7 +200,7 @@ Dependências mínimas e coerentes com a função de cada camada: `Npgsql.Entity
 | README com instruções de build/execução | ✅ completo, com exemplos de request/response |
 | Banco versionado com migrations | ✅ EF Core Migrations (`InitialCreate`) para os dois serviços |
 | Diagrama de arquitetura (bônus) | ✅ diagrama Mermaid no README |
-| Mensageria (bônus) | ❌ não implementado (comunicação é apenas HTTP síncrona) — aceitável, pois o PDF trata mensageria como bônus opcional |
+| Mensageria (bônus) | ✅ implementado — RabbitMQ + MassTransit. `PropostaService` publica `PropostaAprovadaEvent`/`PropostaRejeitadaEvent` via `MassTransitPropostaEventPublisher`; `ContratacaoService` consome `PropostaAprovadaEvent` via `PropostaAprovadaConsumer` e efetiva a contratação automaticamente, além do fluxo HTTP síncrono já existente. Os contratos de evento ficam no projeto compartilhado `IndtSeguro.Contracts`. *(Nota: esta linha foi corrigida — a versão anterior deste relatório, gerada antes da adição da mensageria, indicava incorretamente que este item não havia sido implementado.)* |
 
 ---
 
