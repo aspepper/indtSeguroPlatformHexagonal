@@ -254,7 +254,7 @@ dotnet test
 
 ### 1. Execução de Testes End-to-End com `curl`
 
-Para testar o fluxo completo da aplicação (Criar Proposta → Aprovar Proposta → Efetivar Contratação → Validar Bloqueio de Duplicidade), utilize os scripts abaixo de acordo com o seu sistema operacional.
+Para testar o fluxo completo da aplicação (Criar Proposta → Aprovar Proposta → Efetivar Contratação → Validar Bloqueio de Duplicidade), utilize o documento /Documents/Roteiro-de-Testes-E-Validacao.md.
 
 
 ---
